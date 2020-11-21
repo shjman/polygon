@@ -1,2 +1,4 @@
+include ':androidAcademyModule'
 include ':app'
+project(':androidAcademyModule').projectDir = new File(rootDir, 'AndroidAcademy/app/')
 rootProject.name = "Polygon"
