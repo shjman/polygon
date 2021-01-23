@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.shjman.polygon">
 
     <application
+        android:name="com.shjman.polygon.App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -11,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Polygon"
         tools:replace="android:theme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -19,7 +21,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="com.shjman.android_academy.MainActivity">
+        <activity android:name="com.shjman.android_academy.MatrixEffectActivity">
             <intent-filter>
                 <action android:name="com.shjman.android_academy.MainActivity" />
                 <category android:name="android.intent.category.DEFAULT" />
