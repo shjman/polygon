@@ -10,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.shjman.polygon.R
 import com.shjman.polygon.databinding.FragmentSplashBinding
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.launchIn
@@ -17,6 +18,7 @@ import kotlinx.coroutines.flow.onEach
 import reactivecircus.flowbinding.android.view.clicks
 import timber.log.Timber
 
+@AndroidEntryPoint
 class SplashFragment : Fragment(R.layout.fragment_splash) {
 
     private val binding by viewBinding(FragmentSplashBinding::bind)
@@ -32,7 +34,7 @@ class SplashFragment : Fragment(R.layout.fragment_splash) {
 
         viewModel.navigationDelay
             .onEach {
-                delay(5000)
+                delay(1000)
                 findNavController().navigate(R.id.from_splash_to_home)
             }
             .catch { Timber.e("error while handle viewModel.navigationDelay") }
