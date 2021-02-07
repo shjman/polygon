@@ -2,6 +2,7 @@ package com.shjman.polygon.data.local.database
 
 import androidx.room.*
 import com.shjman.polygon.data.InstantTimeConverter
+import com.shjman.polygon.data.local.database.dao.CarDescriptionDao
 import com.shjman.polygon.data.local.database.dao.RefuelingDao
 import com.shjman.polygon.data.local.database.entity.CarDescription
 import com.shjman.polygon.data.local.database.entity.Refueling
@@ -18,6 +19,7 @@ import com.shjman.polygon.data.local.database.entity.Refueling
     InstantTimeConverter::class
 )
 abstract class AppDatabase : RoomDatabase() {
+    abstract fun carDescriptionDao(): CarDescriptionDao
     abstract fun refuelingDao(): RefuelingDao
 }
 

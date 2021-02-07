@@ -8,7 +8,7 @@ import com.shjman.polygon.data.local.database.entity.Refueling
 import kotlinx.coroutines.flow.Flow
 
 @Dao
-abstract class CarDescriptionDao : BaseDao<Refueling> {
+abstract class CarDescriptionDao : BaseDao<CarDescription> {
 
     @Query("SELECT * FROM car_description")
     abstract fun getAllInfo(): Flow<CarDescription>
