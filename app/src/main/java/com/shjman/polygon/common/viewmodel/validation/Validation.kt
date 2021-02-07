@@ -40,8 +40,3 @@ sealed class ValidationResult(@StringRes val errorMessageRes: Int? = null) {
 }
 
 fun <T> ViewModel.validation(vararg validators: Validators<T>): Validation<T> = Validation(viewModelScope, *validators)
-
-fun TextInputLayout.showValidationError(result: ValidationResult) {
-    val errorMessage = result.errorMessageRes?.let { context.resources.getString(it) }
-    error = errorMessage
-}

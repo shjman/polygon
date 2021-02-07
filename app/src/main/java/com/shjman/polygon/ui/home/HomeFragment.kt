@@ -2,12 +2,13 @@ package com.shjman.polygon.ui.home
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import by.kirich1409.viewbindingdelegate.viewBinding
+import com.google.android.material.snackbar.Snackbar
 import com.shjman.polygon.R
+import com.shjman.polygon.common.viewmodel.validation.ValidationResult
 import com.shjman.polygon.databinding.FragmentHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.*
@@ -27,8 +28,9 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     private val handlerException = CoroutineExceptionHandler { canceledContext, throwable ->
         Timber.e(throwable, "ExceptionHandler canceledContext:$canceledContext")
         binding.progress.visibility = View.GONE
-        Toast.makeText(requireContext(), throwable.message, Toast.LENGTH_LONG).show()
+        throwable.message?.let { showMessage(it) }
     }
+
     private val uiScope = CoroutineScope(Dispatchers.Main + SupervisorJob() + handlerException)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -43,8 +45,13 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
         viewModel.carModelValidation.result
             .onEach { validationResult ->
-                validationResult.errorMessageRes?.let {
-                    binding.carModelLayout.error = requireContext().resources.getString(it)
+                when (validationResult) {
+                    is ValidationResult.Valid -> binding.carModelLayout.error = null
+                    is ValidationResult.NotValid -> {
+                        validationResult.errorMessageRes?.let {
+                            binding.carModelLayout.error = requireContext().resources.getString(it)
+                        }
+                    }
                 }
             }
             .catch { Timber.e(it, "viewModel.carModelValidation.result error") }
@@ -56,11 +63,15 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                     binding.progress.visibility = View.VISIBLE
                     viewModel.onAddModelClicked()
                     binding.progress.visibility = View.GONE
-                    Toast.makeText(requireContext(), "success", Toast.LENGTH_LONG).show()
+                    showMessage("success")
                 }
             }
             .catch { Timber.e(it, "binding.addModel.clicks() error") }
             .launchIn(viewLifecycleOwner.lifecycleScope)
+    }
+
+    private fun showMessage(message: String) {
+        view?.let { Snackbar.make(it, message, Snackbar.LENGTH_LONG).show() }
     }
 
     override fun onDestroyView() {
