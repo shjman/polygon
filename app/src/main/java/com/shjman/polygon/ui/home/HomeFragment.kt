@@ -5,6 +5,7 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.google.android.material.snackbar.Snackbar
 import com.shjman.polygon.R
@@ -67,6 +68,11 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 }
             }
             .catch { Timber.e(it, "binding.addModel.clicks() error") }
+            .launchIn(viewLifecycleOwner.lifecycleScope)
+
+        binding.addRefueling.clicks()
+            .onEach { findNavController().navigate(HomeFragmentDirections.fromHomeToRefueling()) }
+            .catch { Timber.e(it, "binding.addRefueling.clicks() error") }
             .launchIn(viewLifecycleOwner.lifecycleScope)
     }
 

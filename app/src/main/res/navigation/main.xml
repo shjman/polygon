@@ -23,6 +23,18 @@
         android:id="@+id/home"
         android:name="com.shjman.polygon.ui.home.HomeFragment"
         android:label="HomeFragment"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home">
+
+        <action
+            android:id="@+id/from_home_to_refueling"
+            app:destination="@id/refueling" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/refueling"
+        android:name="com.shjman.polygon.ui.home.refueling.RefuelingFragment"
+        android:label="RefuelingFragment"
+        tools:layout="@layout/fragment_refueling" />
 
 </navigation>

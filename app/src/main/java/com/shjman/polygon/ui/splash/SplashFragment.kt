@@ -35,7 +35,7 @@ class SplashFragment : Fragment(R.layout.fragment_splash) {
         viewModel.navigationDelay
             .onEach {
                 delay(1000)
-                findNavController().navigate(R.id.from_splash_to_home)
+                findNavController().navigate(SplashFragmentDirections.fromSplashToHome())
             }
             .catch { Timber.e("error while handle viewModel.navigationDelay") }
             .launchIn(lifecycleScope)

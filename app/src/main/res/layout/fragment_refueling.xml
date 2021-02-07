@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/keyline5">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/date_field"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="date"
+        app:layout_constraintBottom_toBottomOf="@id/date_value"
+        app:layout_constraintEnd_toStartOf="@id/date_value"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/date_value" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/date_value"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        app:layout_constraintBottom_toTopOf="@id/mileage_layout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/date_field"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="21 февраля 2021" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/mileage_field"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="одометр/пробег"
+        app:layout_constraintBottom_toBottomOf="@id/mileage_layout"
+        app:layout_constraintEnd_toStartOf="@id/mileage_layout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/mileage_layout" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/mileage_layout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/keyline3"
+        app:layout_constraintBottom_toTopOf="@id/fuel_type_layout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/date_field"
+        app:layout_constraintTop_toBottomOf="@id/date_value">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/mileage_value"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:hint="км"
+            android:inputType="number"
+            android:maxLines="1" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/fuel_type_field"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="тип топлива"
+        app:layout_constraintBottom_toBottomOf="@id/fuel_type_layout"
+        app:layout_constraintEnd_toStartOf="@id/fuel_type_layout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/fuel_type_layout" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/fuel_type_layout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/keyline3"
+        app:layout_constraintBottom_toTopOf="@id/number_liters_layout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/fuel_type_field"
+        app:layout_constraintTop_toBottomOf="@id/mileage_layout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/fuel_type_value"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:hint="АИ-95"
+            android:maxLines="1" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/number_liters_field"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="количество, литров"
+        app:layout_constraintBottom_toBottomOf="@id/number_liters_layout"
+        app:layout_constraintEnd_toStartOf="@id/number_liters_layout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/number_liters_layout" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/number_liters_layout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/keyline3"
+        app:layout_constraintBottom_toTopOf="@id/price_layout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/number_liters_field"
+        app:layout_constraintTop_toBottomOf="@id/fuel_type_layout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/number_liters_value"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:hint="10"
+            android:maxLines="1" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/price_field"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="цена"
+        app:layout_constraintBottom_toBottomOf="@id/price_layout"
+        app:layout_constraintEnd_toStartOf="@id/price_layout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/price_layout" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/price_layout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/keyline3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/price_field"
+        app:layout_constraintTop_toBottomOf="@id/number_liters_layout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/price_value"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:hint="руб/литр"
+            android:maxLines="1" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
