@@ -11,7 +11,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="date"
+        android:text="@string/refueling_date_field"
         app:layout_constraintBottom_toBottomOf="@id/date_value"
         app:layout_constraintEnd_toStartOf="@id/date_value"
         app:layout_constraintStart_toStartOf="parent"
@@ -33,7 +33,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="одометр/пробег"
+        android:text="@string/refueling_mileage_field"
         app:layout_constraintBottom_toBottomOf="@id/mileage_layout"
         app:layout_constraintEnd_toStartOf="@id/mileage_layout"
         app:layout_constraintStart_toStartOf="parent"
@@ -54,7 +54,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:hint="км"
+            android:hint="@string/refueling_mileage_hint"
             android:inputType="number"
             android:maxLines="1" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -64,7 +64,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="тип топлива"
+        android:text="@string/refueling_fuel_type"
         app:layout_constraintBottom_toBottomOf="@id/fuel_type_layout"
         app:layout_constraintEnd_toStartOf="@id/fuel_type_layout"
         app:layout_constraintStart_toStartOf="parent"
@@ -85,7 +85,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:hint="АИ-95"
             android:maxLines="1" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -94,7 +93,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="количество, литров"
+        android:text="@string/refueling_number_liters_field"
         app:layout_constraintBottom_toBottomOf="@id/number_liters_layout"
         app:layout_constraintEnd_toStartOf="@id/number_liters_layout"
         app:layout_constraintStart_toStartOf="parent"
@@ -115,7 +114,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:hint="10"
+            android:hint="@string/refueling_number_liters_hint"
+            android:inputType="number"
             android:maxLines="1" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -124,7 +124,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="цена"
+        android:text="@string/refueling_price_field"
         app:layout_constraintBottom_toBottomOf="@id/price_layout"
         app:layout_constraintEnd_toStartOf="@id/price_layout"
         app:layout_constraintStart_toStartOf="parent"
@@ -135,6 +135,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:padding="@dimen/keyline3"
+        app:layout_constraintBottom_toTopOf="@id/take_check_photo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/price_field"
         app:layout_constraintTop_toBottomOf="@id/number_liters_layout">
@@ -144,9 +145,27 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:hint="руб/литр"
+            android:hint="@string/refueling_price_hint"
             android:maxLines="1" />
     </com.google.android.material.textfield.TextInputLayout>
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/add_completed_photo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/keyline3"
+        android:text="@string/refueling_add_completed_photo"
+        app:layout_constraintEnd_toStartOf="@id/take_check_photo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/take_check_photo" />
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/take_check_photo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/keyline3"
+        android:text="@string/refueling_take_check_photo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/add_completed_photo"
+        app:layout_constraintTop_toBottomOf="@id/price_layout" />
 </androidx.constraintlayout.widget.ConstraintLayout>

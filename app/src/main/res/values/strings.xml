@@ -4,4 +4,16 @@
     <!--errors-->
     <string name="field_is_empty">Field is empty</string>
 
+    <!--Refueling-->
+    <string name="refueling_date_field">Дата</string>
+    <string name="refueling_fuel_type">тип топлива:\nдизель, бензин:АИ-92,АИ-95</string>
+    <string name="refueling_mileage_field">одометр/пробег</string>
+    <string name="refueling_mileage_hint">км</string>
+    <string name="refueling_number_liters_field">количество, обьем</string>
+    <string name="refueling_number_liters_hint">литров</string>
+    <string name="refueling_price_field">цена</string>
+    <string name="refueling_price_hint">руб/литр</string>
+    <string name="refueling_take_check_photo">сделать и добавить фото чека</string>
+    <string name="refueling_add_completed_photo">добавить сделанное фото чека</string>
+
 </resources>
