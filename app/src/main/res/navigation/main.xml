@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
@@ -35,6 +36,18 @@
         android:id="@+id/refueling"
         android:name="com.shjman.polygon.ui.home.refueling.RefuelingFragment"
         android:label="RefuelingFragment"
-        tools:layout="@layout/fragment_refueling" />
+        tools:layout="@layout/fragment_refueling">
+
+        <action
+            android:id="@+id/from_refueling_to_camera"
+            app:destination="@id/camera" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/camera"
+        android:name="com.shjman.polygon.ui.camera.CameraFragment"
+        android:label="CameraFragment"
+        tools:layout="@layout/fragment_camera" />
 
 </navigation>
