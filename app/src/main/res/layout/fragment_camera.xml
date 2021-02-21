@@ -15,14 +15,25 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageButton
-        android:id="@+id/take_photo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <View
+        android:id="@+id/round_background"
+        android:layout_width="@dimen/button_icon_min_size"
+        android:layout_height="@dimen/button_icon_min_size"
         android:layout_marginBottom="@dimen/keyline6"
-        android:src="@drawable/ic_camera"
+        android:background="@drawable/round_corner"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageButton
+        android:id="@+id/take_photo"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="?actionBarItemBackground"
+        android:src="@drawable/ic_camera"
+        app:layout_constraintBottom_toBottomOf="@id/round_background"
+        app:layout_constraintEnd_toEndOf="@id/round_background"
+        app:layout_constraintStart_toStartOf="@id/round_background"
+        app:layout_constraintTop_toTopOf="@id/round_background"
         tools:ignore="ContentDescription" />
 </androidx.constraintlayout.widget.ConstraintLayout>

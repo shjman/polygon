@@ -8,4 +8,7 @@
     <dimen name="keyline5">24dp</dimen>
     <dimen name="keyline6">32dp</dimen>
 
+    <dimen name="round_corner_radius">50dp</dimen>
+    <dimen name="button_icon_min_size">48dp</dimen>
+
 </resources>
