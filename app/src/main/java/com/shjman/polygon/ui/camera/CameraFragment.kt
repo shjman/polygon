@@ -1,6 +1,5 @@
 package com.shjman.polygon.ui.camera
 
-import android.Manifest
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
@@ -12,6 +11,7 @@ import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.shjman.polygon.R
@@ -26,6 +26,8 @@ import java.text.SimpleDateFormat
 import java.util.*
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
+import kotlin.coroutines.resume
+import kotlin.coroutines.suspendCoroutine
 
 class CameraFragment : Fragment(R.layout.fragment_camera) {
 
@@ -40,7 +42,10 @@ class CameraFragment : Fragment(R.layout.fragment_camera) {
         cameraExecutor = Executors.newSingleThreadExecutor()
 
         binding.takePhoto.clicks()
-            .onEach { takePhoto() }
+            .onEach {
+                val takenPhotoUri = takePhoto()
+
+            }
             .catch { Timber.e(it, "binding.takePhoto.clicks() error") }
             .launchIn(viewLifecycleOwner.lifecycleScope)
     }
@@ -76,29 +81,61 @@ class CameraFragment : Fragment(R.layout.fragment_camera) {
         }, ContextCompat.getMainExecutor(requireContext()))
     }
 
-    private fun takePhoto() {
-        val imageCapture = imageCapture ?: return
-        val photoFile = File(
-            outputDirectory,
-            SimpleDateFormat(FILENAME_FORMAT, Locale.US).format(System.currentTimeMillis()) + ".jpg"
-        )
+    // private suspend fun takePhoto(): ImageProxy? {
+    private suspend fun takePhoto(): Uri? {
+        // return suspendCoroutine {
+        //     imageCapture.takePicture(
+        //         ContextCompat.getMainExecutor(requireContext()),
+        //         object : ImageCapture.OnImageCapturedCallback() {
+        //             override fun onCaptureSuccess(imageProxy: ImageProxy) {
+        //                 it.resume(imageProxy)
+        //             }
+        //
+        //             override fun onError(exception: ImageCaptureException) {
+        //                 super.onError(exception)
+        //                 it.resume(null)
+        //             }
+        //         }
+        //     )
+        // }
+        val imageCapture = imageCapture ?: return null
+        val photoFile = File(outputDirectory, SimpleDateFormat(FILENAME_FORMAT, Locale.US).format(System.currentTimeMillis()) + PREFIX_JPG)
         val outputOptions = ImageCapture.OutputFileOptions.Builder(photoFile).build()
-        imageCapture.takePicture(
-            outputOptions,
-            ContextCompat.getMainExecutor(requireContext()),
-            object : ImageCapture.OnImageSavedCallback {
-                override fun onImageSaved(output: ImageCapture.OutputFileResults) {
-                    val savedUri = Uri.fromFile(photoFile)
-                    val msg = "Photo capture succeeded: $savedUri"
-                    Toast.makeText(requireContext(), msg, Toast.LENGTH_SHORT).show()
-                    Timber.d("Uri.fromFile(photoFile) == $msg . output.savedUri == ${output.savedUri}")
-                }
+        return suspendCoroutine {
+            imageCapture.takePicture(
+                outputOptions,
+                ContextCompat.getMainExecutor(requireContext()),
+                object : ImageCapture.OnImageSavedCallback {
+                    override fun onImageSaved(output: ImageCapture.OutputFileResults) {
+                        val savedUri = Uri.fromFile(photoFile)
+                        Toast.makeText(requireContext(), "Photo capture succeeded: $savedUri", Toast.LENGTH_SHORT).show()
+                        Timber.d("Uri.fromFile(photoFile) == $savedUri")
+                        it.resume(savedUri)
+                    }
 
-                override fun onError(e: ImageCaptureException) {
-                    Timber.e(e, "Photo capture failed: ${e.message}")
+                    override fun onError(e: ImageCaptureException) {
+                        Timber.e(e, "Photo capture failed: ${e.message}")
+                        it.resume(null)
+                    }
                 }
-            }
-        )
+            )
+        }
+        /*imageCapture.takePicture(
+                    outputOptions,
+                    ContextCompat.getMainExecutor(requireContext()),
+                    object : ImageCapture.OnImageSavedCallback {
+                        override fun onImageSaved(output: ImageCapture.OutputFileResults) {
+                            val savedUri = Uri.fromFile(photoFile)
+                            val msg = "Photo capture succeeded: $savedUri"
+                            Toast.makeText(requireContext(), msg, Toast.LENGTH_SHORT).show()
+                            Timber.d("Uri.fromFile(photoFile) == $msg . output.savedUri == ${output.savedUri}")
+                        }
+
+                        override fun onError(e: ImageCaptureException) {
+                            Timber.e(e, "Photo capture failed: ${e.message}")
+                        }
+                    }
+                )*/
     }
 
     override fun onDestroyView() {
@@ -108,5 +145,6 @@ class CameraFragment : Fragment(R.layout.fragment_camera) {
 
     companion object {
         private const val FILENAME_FORMAT = "yyyy-MM-dd-HH-mm-ss-SSS"
+        private const val PREFIX_JPG = ".jpg"
     }
 }
