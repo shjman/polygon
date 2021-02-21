@@ -10,12 +10,16 @@ import androidx.camera.core.ImageCaptureException
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.setFragmentResult
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.shjman.polygon.R
 import com.shjman.polygon.databinding.FragmentCameraBinding
+import com.shjman.polygon.ui.home.refueling.RefuelingFragment.Companion.TAKEN_PHOTO_URI_BUNDLE_KEY
+import com.shjman.polygon.ui.home.refueling.RefuelingFragment.Companion.TAKE_PHOTO_REQUEST_KEY
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -44,7 +48,8 @@ class CameraFragment : Fragment(R.layout.fragment_camera) {
         binding.takePhoto.clicks()
             .onEach {
                 val takenPhotoUri = takePhoto()
-
+                setFragmentResult(TAKE_PHOTO_REQUEST_KEY, bundleOf(TAKEN_PHOTO_URI_BUNDLE_KEY to takenPhotoUri?.path))
+                findNavController().popBackStack()
             }
             .catch { Timber.e(it, "binding.takePhoto.clicks() error") }
             .launchIn(viewLifecycleOwner.lifecycleScope)

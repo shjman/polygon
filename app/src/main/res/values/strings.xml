@@ -13,7 +13,10 @@
     <string name="refueling_number_liters_hint">литров</string>
     <string name="refueling_price_field">цена</string>
     <string name="refueling_price_hint">руб/литр</string>
-    <string name="refueling_take_check_photo">сделать и добавить фото чека</string>
     <string name="refueling_add_completed_photo">добавить сделанное фото чека</string>
+    <string name="refueling_edit_completed_photo">добавить другое сделанное фото чека</string>
+    <string name="refueling_take_check_photo">сделать и добавить фото чека</string>
+    <string name="refueling_take_new_check_photo">сделать другое фото чека</string>
+    <string name="refueling_photo_added">фото чека\n добавлено</string>
 
 </resources>

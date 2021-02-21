@@ -153,19 +153,42 @@
         android:id="@+id/add_completed_photo"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/keyline3"
+        android:layout_marginHorizontal="@dimen/keyline2"
+        android:paddingHorizontal="@dimen/keyline1"
         android:text="@string/refueling_add_completed_photo"
-        app:layout_constraintEnd_toStartOf="@id/take_check_photo"
+        android:textSize="@dimen/text_size_small"
+        app:cornerRadius="@dimen/button_corner_radius"
+        app:layout_constraintBottom_toBottomOf="@id/take_check_photo"
+        app:layout_constraintEnd_toStartOf="@id/photo_added_icon"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/take_check_photo" />
+
+    <TextView
+        android:id="@+id/photo_added_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="@dimen/keyline2"
+        android:text="@string/refueling_photo_added"
+        android:visibility="gone"
+        app:drawableTopCompat="@drawable/ic_check_circle_24"
+        app:layout_constraintBottom_toBottomOf="@id/take_check_photo"
+        app:layout_constraintEnd_toStartOf="@id/take_check_photo"
+        app:layout_constraintStart_toEndOf="@id/add_completed_photo"
+        app:layout_constraintTop_toTopOf="@id/take_check_photo"
+        tools:ignore="ContentDescription"
+        tools:visibility="visible" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/take_check_photo"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/keyline3"
+        android:layout_marginHorizontal="@dimen/keyline2"
+        android:paddingHorizontal="@dimen/keyline1"
         android:text="@string/refueling_take_check_photo"
+        android:textSize="@dimen/text_size_small"
+        app:cornerRadius="@dimen/button_corner_radius"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/add_completed_photo"
+        app:layout_constraintStart_toEndOf="@id/photo_added_icon"
         app:layout_constraintTop_toBottomOf="@id/price_layout" />
 </androidx.constraintlayout.widget.ConstraintLayout>
