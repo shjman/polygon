@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "76ddc2047ed319c47911282b1dff751e",
+    "identityHash": "4c0f877a716f0e4bb1c462cd0cbfc839",
     "entities": [
       {
         "tableName": "refueling",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `date` INTEGER NOT NULL, `mileage` INTEGER NOT NULL, `fuelType` TEXT NOT NULL, `numberOfLiters` REAL NOT NULL, `price` REAL NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `date` INTEGER NOT NULL, `mileage` INTEGER, `fuelType` TEXT, `numberOfLiters` REAL, `price` REAL, `photoTakenUri` TEXT)",
         "fields": [
           {
             "fieldPath": "id",
@@ -24,25 +24,31 @@
             "fieldPath": "mileage",
             "columnName": "mileage",
             "affinity": "INTEGER",
-            "notNull": true
+            "notNull": false
           },
           {
             "fieldPath": "fuelType",
             "columnName": "fuelType",
             "affinity": "TEXT",
-            "notNull": true
+            "notNull": false
           },
           {
             "fieldPath": "numberOfLiters",
             "columnName": "numberOfLiters",
             "affinity": "REAL",
-            "notNull": true
+            "notNull": false
           },
           {
             "fieldPath": "price",
             "columnName": "price",
             "affinity": "REAL",
-            "notNull": true
+            "notNull": false
+          },
+          {
+            "fieldPath": "photoTakenUri",
+            "columnName": "photoTakenUri",
+            "affinity": "TEXT",
+            "notNull": false
           }
         ],
         "primaryKey": {
@@ -84,7 +90,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '76ddc2047ed319c47911282b1dff751e')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '4c0f877a716f0e4bb1c462cd0cbfc839')"
     ]
   }
 }

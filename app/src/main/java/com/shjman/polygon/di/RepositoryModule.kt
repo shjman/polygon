@@ -3,6 +3,7 @@ package com.shjman.polygon.di
 import android.content.Context
 import com.shjman.polygon.data.local.database.AppDatabase
 import com.shjman.polygon.data.repository.CarDescriptionRepository
+import com.shjman.polygon.data.repository.RefuelingRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -20,4 +21,11 @@ object RepositoryModule {
         @ApplicationContext context: Context,
         appDatabase: AppDatabase,
     ) = CarDescriptionRepository(context, appDatabase)
+
+    @Provides
+    @ViewModelScoped
+    fun providesRefuelingRepository(
+        @ApplicationContext context: Context,
+        appDatabase: AppDatabase,
+    ) = RefuelingRepository(context, appDatabase)
 }

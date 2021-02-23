@@ -7,10 +7,11 @@ import java.time.Instant
 @Entity(tableName = "refueling")
 data class Refueling(
     val date: Instant,
-    val mileage: Int,
-    val fuelType: String,
-    val numberOfLiters: Double,
-    val price: Double,
+    val mileage: Int?,
+    val fuelType: String?,
+    val numberOfLiters: Double?,
+    val price: Double?,
+    val photoTakenUri: String?,
 ) {
     @PrimaryKey(autoGenerate = true)
     var id: Int = 0
