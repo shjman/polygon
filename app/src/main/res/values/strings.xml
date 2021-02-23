@@ -18,5 +18,6 @@
     <string name="refueling_take_check_photo">сделать и добавить фото чека</string>
     <string name="refueling_take_new_check_photo">сделать другое фото чека</string>
     <string name="refueling_photo_added">фото чека\n добавлено</string>
+    <string name="refueling_save_data">сохранить</string>
 
 </resources>

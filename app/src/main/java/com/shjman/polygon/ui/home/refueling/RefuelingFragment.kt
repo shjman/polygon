@@ -9,12 +9,15 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.shjman.polygon.R
+import com.shjman.polygon.common.Constants.SIMPLE_COMMON_DATE_FORMAT
 import com.shjman.polygon.databinding.FragmentRefuelingBinding
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import reactivecircus.flowbinding.android.view.clicks
 import timber.log.Timber
+import java.time.ZonedDateTime
+import java.time.format.DateTimeFormatter
 
 class RefuelingFragment : Fragment(R.layout.fragment_refueling) {
 
@@ -27,6 +30,8 @@ class RefuelingFragment : Fragment(R.layout.fragment_refueling) {
         setFragmentResultListener(TAKE_PHOTO_REQUEST_KEY) { _, bundle ->
             bundle.getString(TAKEN_PHOTO_URI_BUNDLE_KEY)?.let { viewModel.photoTakenUri(it) }
         }
+
+        binding.dateValue.text = ZonedDateTime.now().format(DateTimeFormatter.ofPattern(SIMPLE_COMMON_DATE_FORMAT))
 
         binding.takeCheckPhoto.clicks()
             .onEach { findNavController().navigate(RefuelingFragmentDirections.fromRefuelingToCamera()) }
