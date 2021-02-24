@@ -1,5 +1,6 @@
 package com.shjman.polygon.ui.home
 
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
@@ -20,6 +21,7 @@ import kotlinx.coroutines.flow.onEach
 import reactivecircus.flowbinding.android.view.clicks
 import reactivecircus.flowbinding.android.widget.textChanges
 import timber.log.Timber
+import java.io.File
 
 @AndroidEntryPoint
 class HomeFragment : Fragment(R.layout.fragment_home) {
@@ -72,6 +74,11 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
         binding.openRefuelingStatistic.clicks()
             .onEach {
+                val checkPhotoPath = File("/storage/emulated/0/Android/media/com.shjman.polygon/Polygon/2021-02-24-00-56-37-764.jpg")
+                val bitmap = BitmapFactory.decodeFile(checkPhotoPath.absolutePath)
+                checkPhotoPath.let {
+                    binding.checkPhoto.setImageBitmap(bitmap)
+                }
             }
             .catch { Timber.e(it, "binding.openRefuelingStatistic.clicks() error") }
             .launchIn(viewLifecycleOwner.lifecycleScope)

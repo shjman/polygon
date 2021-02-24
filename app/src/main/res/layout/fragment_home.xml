@@ -50,6 +50,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/car_model_layout" />
 
+    <ImageView
+        android:id="@+id/check_photo"
+        android:layout_width="400dp"
+        android:layout_height="400dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/open_refueling_statistic"
+        tools:ignore="ContentDescription" />
+
     <androidx.core.widget.ContentLoadingProgressBar
         android:id="@+id/progress"
         style="?android:attr/progressBarStyleInverse"
