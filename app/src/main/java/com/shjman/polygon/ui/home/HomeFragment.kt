@@ -70,6 +70,12 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             .catch { Timber.e(it, "binding.addModel.clicks() error") }
             .launchIn(viewLifecycleOwner.lifecycleScope)
 
+        binding.openRefuelingStatistic.clicks()
+            .onEach {
+            }
+            .catch { Timber.e(it, "binding.openRefuelingStatistic.clicks() error") }
+            .launchIn(viewLifecycleOwner.lifecycleScope)
+
         binding.addRefueling.clicks()
             .onEach { findNavController().navigate(HomeFragmentDirections.fromHomeToRefueling()) }
             .catch { Timber.e(it, "binding.addRefueling.clicks() error") }
