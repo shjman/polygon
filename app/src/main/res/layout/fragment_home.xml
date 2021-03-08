@@ -37,10 +37,12 @@
         android:id="@+id/add_model"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:enabled="false"
         android:text="add"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/car_model_layout"
-        app:layout_constraintTop_toBottomOf="@id/home_title" />
+        app:layout_constraintTop_toBottomOf="@id/home_title"
+        tools:enabled="true" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/open_refueling_statistic"

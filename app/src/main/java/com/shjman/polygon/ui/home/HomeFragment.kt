@@ -49,8 +49,12 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         viewModel.carModelValidation.result
             .onEach { validationResult ->
                 when (validationResult) {
-                    is ValidationResult.Valid -> binding.carModelLayout.error = null
+                    is ValidationResult.Valid -> {
+                        binding.carModelLayout.error = null
+                        binding.addModel.isEnabled = true
+                    }
                     is ValidationResult.NotValid -> {
+                        binding.addModel.isEnabled = false
                         validationResult.errorMessageRes?.let {
                             binding.carModelLayout.error = requireContext().resources.getString(it)
                         }
@@ -74,7 +78,8 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
         binding.openRefuelingStatistic.clicks()
             .onEach {
-                val checkPhotoPath = File("/storage/emulated/0/Android/media/com.shjman.polygon/Polygon/2021-02-24-00-56-37-764.jpg")
+                val checkPhotoPath =
+                    File("/storage/emulated/0/Android/media/com.shjman.polygon/Polygon/2021-02-24-00-56-37-764.jpg")
                 val bitmap = BitmapFactory.decodeFile(checkPhotoPath.absolutePath)
                 checkPhotoPath.let {
                     binding.checkPhoto.setImageBitmap(bitmap)
