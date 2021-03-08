@@ -23,3 +23,17 @@ class HomeViewModel @Inject constructor(
         carDescriptionRepository.addCarDescription(carModelValidation.value)
     }
 }
+
+object AddModelUnit {
+
+    /**
+     * the model is not valid if it is empty
+     * or contains "lada"
+     */
+
+    fun validateModelInput(
+        model: String,
+    ): Boolean {
+        return model.isNotBlank() && !model.contains("lada")
+    }
+}
