@@ -47,8 +47,6 @@ android {
 }
 
 dependencies {
-    implementation project(':androidAcademyModule')
-
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
     /* Android X */
